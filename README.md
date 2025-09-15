@@ -59,35 +59,6 @@ Option B - Docker:
 docker-compose up -d
 ```
 
-### Access Points
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000
-- API Documentation: http://localhost:8000/docs
-
-## API Testing
-
-### Health Check
-```bash
-curl http://localhost:8000/api/health
-```
-
-### Data Summary
-```bash
-curl http://localhost:8000/api/data-summary
-```
-
-### Surface Timeseries
-```bash
-curl "http://localhost:8000/api/surface-timeseries?lat=0&lon=60&start=2010-01-01&end=2013-12-31"
-```
-
-### Chat Interface
-```bash
-curl -X POST http://localhost:8000/api/chat \
-  -H "Content-Type: application/json" \
-  -d '{"message": "What is the temperature trend at 60°E?"}'
-```
-
 ## Demo Chat Prompts
 
 1. **"What is the average temperature at 60°E longitude in 2012?"**
