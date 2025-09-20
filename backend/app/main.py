@@ -8,9 +8,12 @@ Provides endpoints for data retrieval, analysis, and conversational AI interface
 from fastapi import FastAPI, HTTPException, Depends, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi import UploadFile, File, Form
+from pathlib import Path
 from typing import List, Optional, Dict, Any
 import pandas as pd
 import os
+import tempfile, shutil
 from datetime import datetime, date
 import logging
 
@@ -21,6 +24,7 @@ from .models.schemas import (
 )
 from .services.data_service import DataService
 from .llm.llm_service import LLMService
+from ingest.netcdf_to_parquet import GridNetCDFProcessor
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -47,6 +51,9 @@ app.add_middleware(
 data_service = DataService()
 llm_service = LLMService()
 
+@app.get("/")
+def root():
+    return {"message": "Welcome to the FloatChat API. Visit /docs for API documentation."}
 
 @app.get("/api/health", response_model=HealthResponse)
 async def health_check():
@@ -163,27 +170,92 @@ async def chat_with_data(request: ChatRequest):
         raise HTTPException(status_code=500, detail="Failed to process chat request")
 
 
-@app.post("/api/ingest-netcdf")
-async def ingest_netcdf_data():
-    """
-    Stub endpoint for NetCDF data ingestion.
+# @app.post("/api/ingest-netcdf")
+# async def ingest_netcdf_data():
+#     """
+#     Stub endpoint for NetCDF data ingestion.
     
-    TODO: Implement file upload handling and NetCDF processing.
-    This endpoint will handle:
-    1. File upload validation
-    2. NetCDF parsing with xarray
-    3. Data transformation and validation
-    4. Database/Parquet storage
-    5. Metadata indexing for retrieval
+#     TODO: Implement file upload handling and NetCDF processing.
+#     This endpoint will handle:
+#     1. File upload validation
+#     2. NetCDF parsing with xarray
+#     3. Data transformation and validation
+#     4. Database/Parquet storage
+#     5. Metadata indexing for retrieval
+#     """
+#     # This is a placeholder implementation
+#     return JSONResponse(
+#         content={
+#             "status": "not_implemented", 
+#             "message": "NetCDF ingestion pipeline not yet implemented. See backend/ingest/netcdf_to_parquet.py for implementation scaffold."
+#         },
+#         status_code=501
+#     )
+
+@app.post("/api/ingest-netcdf")
+async def ingest_netcdf_data(
+    file_path: Optional[str] = Form(None),
+    file: Optional[UploadFile] = File(None),
+):
     """
-    # This is a placeholder implementation
-    return JSONResponse(
-        content={
-            "status": "not_implemented", 
-            "message": "NetCDF ingestion pipeline not yet implemented. See backend/ingest/netcdf_to_parquet.py for implementation scaffold."
-        },
-        status_code=501
-    )
+    Ingest a gridded NetCDF (e.g., tempsal.nc) and export Parquet.
+
+    Accepts either:
+    - file_path (form field): absolute/relative path on server
+    - file (multipart upload): actual .nc file to process
+
+    Returns: JSON with success flag, records, output_file, and metadata.
+    """
+    proc = GridNetCDFProcessor(output_dir="./processed_argo_data")
+
+    # Case 1: server-side path provided
+    if file_path:
+        try:
+            fp = Path(file_path).expanduser().resolve()
+            ok, errs = proc.validate(fp)
+            if not ok:
+                raise HTTPException(status_code=400, detail={"errors": errs})
+            result = proc.process_file(fp)
+            if not result.get("success"):
+                raise HTTPException(status_code=422, detail=result)
+            return result
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Ingestion error (path): {e}")
+            raise HTTPException(status_code=500, detail="Failed to ingest NetCDF from path")
+
+    # Case 2: multipart upload provided
+    if file:
+        if not file.filename.lower().endswith(".nc"):
+            raise HTTPException(status_code=400, detail="Only .nc (NetCDF) files are accepted")
+        tmp_dir = Path(tempfile.mkdtemp(prefix="floatchat_nc_"))
+        tmp_path = tmp_dir / file.filename
+        try:
+            with tmp_path.open("wb") as f:
+                shutil.copyfileobj(file.file, f)
+
+            ok, errs = proc.validate(tmp_path)
+            if not ok:
+                raise HTTPException(status_code=400, detail={"errors": errs})
+
+            result = proc.process_file(tmp_path)
+            if not result.get("success"):
+                raise HTTPException(status_code=422, detail=result)
+            return result
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Ingestion error (upload): {e}")
+            raise HTTPException(status_code=500, detail="Failed to ingest uploaded NetCDF")
+        finally:
+            try:
+                shutil.rmtree(tmp_dir, ignore_errors=True)
+            except Exception:
+                pass
+
+    # Neither provided
+    raise HTTPException(status_code=400, detail="Provide either file_path or file (.nc) for ingestion")
 
 
 # Error handlers

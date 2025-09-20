@@ -1,4 +1,4 @@
-// File: C:\Users\medam\floatchat\frontend\src\app\chat\page.tsx
+// File: C:\Users\drv\drv_codes\FloatChat\frontend\src\app\chat\page.tsx
 import * as entry from '../../../../src/app/chat/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

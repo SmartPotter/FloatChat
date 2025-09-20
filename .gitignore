@@ -23,3 +23,5 @@ backend/venv/
 *.sln
 *.sw?
 .env
+
+/backend/netcdf_data/

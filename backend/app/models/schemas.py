@@ -40,7 +40,7 @@ class VerticalProfilePoint(BaseModel):
     depth: float = Field(..., description="Depth in meters")
     temperature: Optional[float] = Field(None, description="Temperature in °C")
     salinity: Optional[float] = Field(None, description="Salinity in PSU")
-    date: date = Field(..., description="Profile date")
+    Date: date = Field(..., description="Profile date")
 
 
 class HeatContentPoint(BaseModel):
