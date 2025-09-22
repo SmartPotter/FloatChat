@@ -34,3 +34,7 @@ frontend/.next/
 **/__pycache__/
 **/*.pyc
 ".next/" 
+# Local environment variables
+.env
+backend/.env
+frontend/.env
