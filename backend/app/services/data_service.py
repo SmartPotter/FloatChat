@@ -244,7 +244,7 @@ class DataService:
                     depth=row['depth'],
                     temperature=row.get('temperature'),
                     salinity=row.get('salinity'),
-                    date=closest_date.date()
+                    Date=closest_date.date()
                 )
                 for _, row in df.iterrows()
             ]

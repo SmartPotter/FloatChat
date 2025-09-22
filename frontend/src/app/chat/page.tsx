@@ -964,7 +964,7 @@ import {
   type TimeSeriesPoint, type VerticalProfilePoint, type HeatContentPoint
 } from '../../lib/api-client'
 import { TimeSeriesChart } from '../../components/charts/TimeSeriesChart'
-import { VerticalProfileChart } from '../../components/charts/VerticalProfileChart'
+import VerticalProfileChart from '../../components/charts/VerticalProfileChart'
 import { HeatmapChart } from '../../components/charts/HeatmapChart'
 
 // ---------- Helpers ----------

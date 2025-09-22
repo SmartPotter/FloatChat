@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app\\\\dashboard\\\\page.tsx -> ../../components/OceanMap\":{\"id\":\"app\\\\dashboard\\\\page.tsx -> ../../components/OceanMap\",\"files\":[\"static/css/_app-pages-browser_src_components_OceanMap_tsx.css\",\"static/chunks/_app-pages-browser_src_components_OceanMap_tsx.js\"]}}"

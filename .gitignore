@@ -1,3 +1,6 @@
+# Next.js build output
+frontend/.next/
+
 # Logs
 logs
 *.log
@@ -25,3 +28,8 @@ backend/venv/
 .env
 
 /backend/netcdf_data/
+
+frontend/.next/
+
+**/__pycache__/
+**/*.pyc
