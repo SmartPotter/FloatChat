@@ -1,0 +1,20 @@
+*   [33me41b57f0[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m Merge branch 'main' of https://github.com/SmartPotter/FloatChat
+[31m|[m[32m\[m  
+* [32m|[m [33ma800ddae[m Update.
+* [32m|[m [33ma295a435[m Ignore Next.js build folder
+* [32m|[m [33m83d0c09b[m Ignore Next.js build artifacts
+* [32m|[m [33mb0548056[m Implemented the ingest-netcdf endpoint
+* [32m|[m [33mfc68bfe1[m readme
+* [32m|[m [33m0a470ad1[m Initial commit without venv or large files
+ [32m/[m  
+[32m|[m * [33m58732126[m[33m ([m[1;35mrefs/stash[m[33m)[m On temp-clean: Save env example changes
+[32m|[m[32m/[m[34m|[m 
+[32m|[m * [33m2dda3ddc[m index on temp-clean: 673c9bd0 Push new changes safely
+[32m|[m[32m/[m  
+* [33m673c9bd0[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mtemp-clean[m[33m)[m Push new changes safely
+* [33meaff9b0f[m Implemented the ingest-netcdf endpoint
+* [33m5670e7d9[m readme
+* [33mad6255b0[m Initial commit without venv or large files
+* [33m28992aba[m[33m ([m[1;32mbackup-main[m[33m)[m init
+* [33ma465c54b[m Remove virtual environment from repo
+* [33m6e8bae2e[m init
