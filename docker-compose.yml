@@ -8,11 +8,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-      - /app/.next
+      - NEXT_PUBLIC_API_URL=http://backend:8000
     depends_on:
       - backend
 
@@ -25,8 +21,6 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:password@db:5432/floatchat
       - CSV_FALLBACK=true
-    volumes:
-      - ./backend:/app
     depends_on:
       - db
 
