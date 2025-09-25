@@ -22,7 +22,7 @@ This README provides an overview of the project, including team details, relevan
 
 - **SIH Presentation:** [Final SIH Presentation](https://onedrive.live.com/personal/d4c0dbd0e7ba7ad3/_layouts/15/Doc.aspx?sourcedoc=%7B7aef39bb-f227-49c8-beec-199021d5ecf7%7D&action=default&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3AvYy9kNGMwZGJkMGU3YmE3YWQzL0ViczU3M29uOHNoSnZ1d1prQ0hWN1BjQjZQVnlWY0lvVU1mYjB6eERyeGlKaEE_ZT1MQmZmY0I&slrid=004bc8a1-906b-0000-fa69-158fe8923ce5&originalPath=aHR0cHM6Ly8xZHJ2Lm1zL3AvYy9kNGMwZGJkMGU3YmE3YWQzL0ViczU3M29uOHNoSnZ1d1prQ0hWN1BjQjZQVnlWY0lvVU1mYjB6eERyeGlKaEE_cnRpbWU9QnVzZ0hQXzUzVWc&CID=67d8b92b-ed90-42a4-b73b-73fc10af48b1&_SRM=0:G:56&file=SIH2025-IDEA-Presentation-Format.pptx)
 - **Video Demonstration:** [Watch Video](https://www.youtube.com/watch?v=fU1Fn5ZRlaM)
-- **Live Deployment:** [View Deployment](https://float-chat-eight.vercel.app/)
+- **Live Deployment:** [View Deployment](https://float-chat-eight.vercel.app/), [Microsite-Oceanic Data Platform](https://float-chat-kg-gxdo.vercel.app/)
 - **Source Code:** [View Source Code](https://github.com/SmartPotter/FloatChat)
 - **Additional Resources:** [Indian Argo Project](https://incois.gov.in/OON/index.jsp)
 
