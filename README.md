@@ -16,7 +16,7 @@ This README provides an overview of the project, including team details, relevan
 - **Sanskriti** - 2022UCS1550 - [@Sans11Pentium](https://github.com/Sans11Pentium)
 - **Kanishka Singh** - 2022UCA1928 - [@skanishka01](https://github.com/skanishka01)
 
-**Collaborator:** [@drv44](https://github.com/drv44), [@Sans11Pentium](https://github.com/Sans11Pentium)
+**Collaborators:** [@SmartPotter](https://github.com/SmartPotter), [@drv44](https://github.com/drv44), [@Sans11Pentium](https://github.com/Sans11Pentium)
 
 ## Project Links
 
